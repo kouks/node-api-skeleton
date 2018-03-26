@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 
 /*
 |
-| We boot up the http server and listed on a given port.
+| We boot up an express server instance.
 |
 */
 
@@ -15,5 +15,5 @@ app.server = http.createServer(app)
 app.server.listen(8080)
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello')
 })

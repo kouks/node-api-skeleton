@@ -1,4 +1,6 @@
-const nodeExternals = require('webpack-node-externals');
+const Nodemon = require('nodemon-webpack-plugin')
+const nodeExternals = require('webpack-node-externals')
+const FriendlyErrors = require('friendly-errors-webpack-plugin')
 
 function basePath (dir) {
   return require('path').join(__dirname, dir)
@@ -8,6 +10,10 @@ module.exports = {
   entry: './src/main.js',
   target: 'node',
   externals: [nodeExternals()],
+  plugins: [
+    new Nodemon(),
+    new FriendlyErrors()
+  ],
   output: {
     path: basePath('dist'),
     publicPath: '/dist/',
@@ -23,7 +29,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.js$/,
         loader: 'eslint-loader',
         enforce: 'pre',
         include: [basePath('src')]
